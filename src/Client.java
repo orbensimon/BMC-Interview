@@ -1,6 +1,6 @@
 import java.util.Scanner;
 import java.util.concurrent.*;
-public class MainClass {
+public class Client {
 	public static String to;
 	public static String from;
 	public static String body;
