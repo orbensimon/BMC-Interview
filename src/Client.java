@@ -6,7 +6,6 @@ import java.net.InetAddress;
 import java.net.Socket;
 import java.net.UnknownHostException;
 import java.util.Scanner;
-import java.util.concurrent.*;
 public class Client {
 	public static void main(String args[])
 	{
@@ -15,7 +14,6 @@ public class Client {
 			String to;
 			String from;
 			String body;
-			boolean exitFlag = false;
 			String vendor;
 			EmailFactory emailFactory = new EmailFactory();
 			Scanner in = new Scanner(System.in);
@@ -31,7 +29,7 @@ public class Client {
             
             while(true)
             {
-            	//System.out.println("IN CLIENT WHILE LOOP");
+
             	System.out.println(input.readUTF() + "\n\n");
             	System.out.println("////***   TO EXIT, SET 'FROM:' LABEL TO '@EXIT..'    ***///\n\n");
             	System.out.println("To:<customer email>");
@@ -60,8 +58,6 @@ public class Client {
     				output.writeUTF("");
     			}
     			
-               // String serverMsg = input.readUTF();
-                //System.out.println(serverMsg);
             }
             input.close();
             output.close();
@@ -75,28 +71,6 @@ public class Client {
         { 
             System.out.println(i); 
         } 
-		/*ExecutorService threadPoolEmailSending = Executors.newFixedThreadPool(3);
-		while(!exitFlag)
-		{
-			System.out.println("To:<customer email>");
-			to = in.nextLine();
-			System.out.println("From:<your name>@<vendor email postfix>");
-			from = in.nextLine();
-			System.out.println("Body:<any information you like>");
-			body = in.nextLine();
-			vendor = Email.getVendorName(from);
-			Email email = emailFactory.getEmail(vendor, to, from ,body);
-			// check mail validation
-			try {
-			out.writeUTF(vendor);
-			}
-			catch (IOException e)
-			{
-				e.printStackTrace();
-			}
-			threadPoolEmailSending.execute(email);
-		}
-		threadPoolEmailSending.shutdown();*/
 		
 	}
 
