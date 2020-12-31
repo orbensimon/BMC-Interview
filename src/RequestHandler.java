@@ -9,7 +9,6 @@ public class RequestHandler extends Thread {
 	final DataInputStream input; 
     final DataOutputStream output; 
     final Socket s; 
-    Email email;
 	
 	/*public RequestHandler(Socket s, ObjectInputStream input, ObjectOutputStream output)
 	{
