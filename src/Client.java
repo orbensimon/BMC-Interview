@@ -65,11 +65,11 @@ public class Client {
 		}
 		catch(UnknownHostException u) 
         { 
-            System.out.println(u); 
+            u.printStackTrace();
         } 
         catch(IOException i) 
         { 
-            System.out.println(i); 
+            i.printStackTrace(); 
         } 
 		
 	}
