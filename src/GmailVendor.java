@@ -6,7 +6,7 @@ public class GmailVendor extends Email {
 	}	
 	public GmailVendor(String dest, String src, String body)
 	{
-		System.out.println("Gmail vendor");
+		//System.out.println("Gmail vendor");
 		this.dest = dest;
 		this.src = src;
 		this.body = body;

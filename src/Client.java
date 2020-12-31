@@ -31,9 +31,9 @@ public class Client {
             
             while(true)
             {
-            	System.out.println("IN CLIENT WHILE LOOP");
-            	System.out.println(input.readUTF());
-            	System.out.println("////***   TO EXIT, SET 'FROM:' LABEL TO @EXIT    ***///");
+            	//System.out.println("IN CLIENT WHILE LOOP");
+            	System.out.println(input.readUTF() + "\n\n");
+            	System.out.println("////***   TO EXIT, SET 'FROM:' LABEL TO '@EXIT..'    ***///\n\n");
             	System.out.println("To:<customer email>");
     			to = in.nextLine();
     			System.out.println("From:<your name>@<vendor email postfix>");
@@ -41,14 +41,25 @@ public class Client {
     			System.out.println("Body:<any information you like>");
     			body = in.nextLine();
     			vendor = Email.getVendorName(from);
-    			if(vendor.toLowerCase().equals("exit"))
+    			if(Email.emailValidation(to, from, body) || vendor.toLowerCase().equals("exit") )
     			{
-    				System.out.println("Closing connection:" + s);
-    				s.close();
-    				break;
+    				
+        			if(vendor.toLowerCase().equals("exit"))
+        			{
+        				System.out.println("Closing connection:" + s);
+        				output.writeUTF("exit");
+        				s.close();
+        				break;
+        			}
+        			Email email = emailFactory.getEmail(vendor, to, from ,body);
+        			output.writeUTF("User name:\n" + email.userName + "\nTo:\n" + to +"\nFrom:\n" + from +"\nBody:\n" + body + "\nServer address:\n" + email.serverAddress);
     			}
-    			Email email = emailFactory.getEmail(vendor, to, from ,body);
-    			output.writeUTF(vendor);
+    			else
+    			{
+    				System.out.println("Email construction failed\n" + "Email proporties not valid. please check email fields.\n");
+    				output.writeUTF("");
+    			}
+    			
                // String serverMsg = input.readUTF();
                 //System.out.println(serverMsg);
             }

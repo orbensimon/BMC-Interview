@@ -27,18 +27,23 @@ public class RequestHandler extends Thread {
 	public void run()
 	{
 		String clienttoServer = "Waiting for email sending requests";
+		String serverMsgPrefix = "**SERVER**: ";
 		while(true)
 		{
 			try
 			{
-				System.out.println("IN REQHANDLER RUN METHOD");
-				output.writeUTF(clienttoServer);
+				//System.out.println("IN REQHANDLER RUN METHOD");
+				output.writeUTF(serverMsgPrefix + clienttoServer+"\n\n");
 				//email = (Email) input.readObject();
 				clienttoServer = input.readUTF();
-				System.out.println("Email from client: " + s +  "was sent" + clienttoServer);
+				if(clienttoServer.length() != 0 && !clienttoServer.equals("exit"))
+				{
+					System.out.println("New Email request:\n" + "From client: " + s +  "\nEmail detailes:\n" + clienttoServer + "\n");
+					output.writeUTF("Email request established. sending email");
+				}
 				if(clienttoServer.equals("exit"))
 				{
-					System.out.println("Client" + this.s + "exit");
+					System.out.println("Client " + this.s + " " + clienttoServer.toUpperCase());
 					this.s.close();
 					break;
 				}

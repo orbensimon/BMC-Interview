@@ -6,7 +6,7 @@ public class YahooVendor extends Email {
 	}
 	public YahooVendor(String dest, String src, String body)
 	{
-		System.out.println("Yahoo vendor");
+		//System.out.println("Yahoo vendor");
 		this.dest = dest;
 		this.src = src;
 		this.body = body;
