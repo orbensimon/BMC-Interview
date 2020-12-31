@@ -26,22 +26,23 @@ public class RequestHandler extends Thread {
 	}
 	public void run()
 	{
-		String clienttoServer;
+		String clienttoServer = "Waiting for email sending requests";
 		while(true)
 		{
 			try
 			{
 				System.out.println("IN REQHANDLER RUN METHOD");
-				output.writeUTF("Email received at server and sent to destenation ");
+				output.writeUTF(clienttoServer);
 				//email = (Email) input.readObject();
 				clienttoServer = input.readUTF();
-				System.out.println("Msg from client: " + clienttoServer);
+				System.out.println("Email from client: " + s +  "was sent" + clienttoServer);
 				if(clienttoServer.equals("exit"))
 				{
 					System.out.println("Client" + this.s + "exit");
 					this.s.close();
 					break;
 				}
+				clienttoServer = "Waiting for email sending requests";
 			}
 			catch (IOException e)
 			{

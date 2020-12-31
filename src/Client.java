@@ -49,8 +49,8 @@ public class Client {
     			}
     			Email email = emailFactory.getEmail(vendor, to, from ,body);
     			output.writeUTF(vendor);
-                String serverMsg = input.readUTF();
-                System.out.println(serverMsg);
+               // String serverMsg = input.readUTF();
+                //System.out.println(serverMsg);
             }
             input.close();
             output.close();
