@@ -29,7 +29,7 @@ public class Client {
             
             while(true)
             {
-
+            	System.out.println("******************************************\n");
             	System.out.println(input.readUTF() + "\n\n");
             	System.out.println("////***   TO EXIT, SET 'FROM:' LABEL TO '@EXIT..'    ***///\n\n");
             	System.out.println("To:<customer email>");
@@ -54,7 +54,7 @@ public class Client {
     			}
     			else
     			{
-    				System.out.println("Email construction failed\n" + "Email proporties not valid. please check email fields.\n");
+    				System.out.println("Email construction failed\n" + "Email properties not valid. please check email fields.\n");
     				output.writeUTF("");
     			}
     			

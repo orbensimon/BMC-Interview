@@ -32,13 +32,13 @@ public class RequestHandler extends Thread {
 		{
 			try
 			{
-				//System.out.println("IN REQHANDLER RUN METHOD");
+            	System.out.println("******************************************\n");
 				output.writeUTF(serverMsgPrefix + clienttoServer+"\n\n");
 				//email = (Email) input.readObject();
 				clienttoServer = input.readUTF();
 				if(clienttoServer.length() != 0 && !clienttoServer.equals("exit"))
 				{
-					System.out.println("New Email request:\n" + "From client: " + s +  "\nEmail detailes:\n" + clienttoServer + "\n");
+					System.out.println("New Email request:\n" + "From client: " + s +  "\nEmail details:\n" + clienttoServer + "\n");
 					output.writeUTF("Email request established. sending email");
 				}
 				if(clienttoServer.equals("exit"))

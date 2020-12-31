@@ -30,7 +30,7 @@ public abstract class Email {
 			return false;
 		else if(!pat.matcher(from).matches())
 			return false;
-		else if(body == null)
+		else if(body.length() == 0)
 			return false;
 		
 		return true;
