@@ -1,16 +1,70 @@
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
+import java.net.InetAddress;
+import java.net.Socket;
+import java.net.UnknownHostException;
 import java.util.Scanner;
 import java.util.concurrent.*;
 public class Client {
-	public static String to;
-	public static String from;
-	public static String body;
-	public static boolean exitFlag = false;
-	public static String vendor;
 	public static void main(String args[])
 	{
-		Scanner in = new Scanner(System.in);
-		EmailFactory emailFactory = new EmailFactory();
-		ExecutorService threadPoolEmailSending = Executors.newFixedThreadPool(3);
+		try 
+		{
+			String to;
+			String from;
+			String body;
+			boolean exitFlag = false;
+			String vendor;
+			EmailFactory emailFactory = new EmailFactory();
+			Scanner in = new Scanner(System.in);
+			InetAddress ip = InetAddress.getByName("localhost");
+			Socket s = new Socket(ip,25); 
+            System.out.println("Connected"); 
+  
+            // takes input from terminal 
+            DataInputStream input = new DataInputStream(s.getInputStream()); 
+  
+            // sends output to the socket 
+            DataOutputStream output = new DataOutputStream(s.getOutputStream());
+            
+            while(true)
+            {
+            	System.out.println("IN CLIENT WHILE LOOP");
+            	System.out.println(input.readUTF());
+            	System.out.println("////***   TO EXIT, SET 'FROM:' LABEL TO @EXIT    ***///");
+            	System.out.println("To:<customer email>");
+    			to = in.nextLine();
+    			System.out.println("From:<your name>@<vendor email postfix>");
+    			from = in.nextLine();
+    			System.out.println("Body:<any information you like>");
+    			body = in.nextLine();
+    			vendor = Email.getVendorName(from);
+    			if(vendor.toLowerCase().equals("exit"))
+    			{
+    				System.out.println("Closing connection:" + s);
+    				s.close();
+    				break;
+    			}
+    			Email email = emailFactory.getEmail(vendor, to, from ,body);
+    			output.writeUTF(vendor);
+                String serverMsg = input.readUTF();
+                System.out.println(serverMsg);
+            }
+            input.close();
+            output.close();
+            in.close();
+		}
+		catch(UnknownHostException u) 
+        { 
+            System.out.println(u); 
+        } 
+        catch(IOException i) 
+        { 
+            System.out.println(i); 
+        } 
+		/*ExecutorService threadPoolEmailSending = Executors.newFixedThreadPool(3);
 		while(!exitFlag)
 		{
 			System.out.println("To:<customer email>");
@@ -21,9 +75,17 @@ public class Client {
 			body = in.nextLine();
 			vendor = Email.getVendorName(from);
 			Email email = emailFactory.getEmail(vendor, to, from ,body);
+			// check mail validation
+			try {
+			out.writeUTF(vendor);
+			}
+			catch (IOException e)
+			{
+				e.printStackTrace();
+			}
 			threadPoolEmailSending.execute(email);
 		}
-		threadPoolEmailSending.shutdown();
+		threadPoolEmailSending.shutdown();*/
 		
 	}
 
