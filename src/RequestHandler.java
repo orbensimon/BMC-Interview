@@ -18,6 +18,7 @@ public class RequestHandler extends Thread {
 	}*/
 	public RequestHandler(Socket s2, DataInputStream input2, DataOutputStream output2)
 	{
+		System.out.println("New user connected\n");
 		this.s = s2;
 		this.input = input2;
 		this.output = output2;

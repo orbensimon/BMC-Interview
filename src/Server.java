@@ -1,4 +1,6 @@
 import java.util.*;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 import java.io.*;
 import java.net.*;
 
@@ -6,6 +8,7 @@ public class Server {
 	
 	public static void main(String[] args) throws IOException
 	{
+		ExecutorService pool = Executors.newCachedThreadPool();
 		ServerSocket serverSocket = new ServerSocket(25);
 		while(true)
 		{
@@ -20,8 +23,7 @@ public class Server {
 				//ObjectInputStream input = new ObjectInputStream(s.getInputStream());
 				//ObjectOutputStream output = new ObjectOutputStream(s.getOutputStream());
 				
-				Thread t = new RequestHandler(s,input,output);
-				t.start();
+				pool.execute(new RequestHandler(s,input,output));
 			}
 			catch(Exception e)
 			{
