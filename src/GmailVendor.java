@@ -6,14 +6,14 @@ public class GmailVendor extends Email {
 	}	
 	public GmailVendor(String dest, String src, String body)
 	{
-		//System.out.println("Gmail vendor");
+
 		this.dest = dest;
 		this.src = src;
 		this.body = body;
 		port = "465";
 		serverAddress = "smtp.gmail.com";
-		userName = "admin";
-		password = "admin";
+		setUserName("admin");
+		setPassword("admin");
 		emailPostfix = "@gmail.com";
 	}
 }

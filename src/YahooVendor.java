@@ -6,14 +6,13 @@ public class YahooVendor extends Email {
 	}
 	public YahooVendor(String dest, String src, String body)
 	{
-		//System.out.println("Yahoo vendor");
 		this.dest = dest;
 		this.src = src;
 		this.body = body;
 		port = "465";
 		serverAddress = "smtp.mail.yahoo.com";
-		userName = "admin";
-		password = "admin";
+		setUserName("admin");
+		setPassword("admin");
 		emailPostfix = "@yahoo.com";
 	}
 

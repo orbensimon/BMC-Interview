@@ -3,8 +3,8 @@ import java.util.regex.Pattern;
 
 public abstract class Email implements Serializable {
 	public String serverAddress;
-	public String userName;
-	public String password;
+	private String userName;
+	private String password;
 	public String emailPostfix;
 	public String dest;
 	public String src;
@@ -14,14 +14,12 @@ public abstract class Email implements Serializable {
 	
 
 	public static String getVendorName(String srcEmail) {
-		String ret;
 		try {
 			return srcEmail.substring(srcEmail.lastIndexOf('@')+1,srcEmail.indexOf('.'));
 		}
 		catch(StringIndexOutOfBoundsException e)
 		{
-			
-			return "";
+			return "Invalid vendor name";
 		}
 		
 	}
@@ -37,5 +35,17 @@ public abstract class Email implements Serializable {
 			return false;
 		
 		return true;
+	}
+	public String getUserName() {
+		return userName;
+	}
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
+	public String getPassword() {
+		return password;
+	}
+	public void setPassword(String password) {
+		this.password = password;
 	}
 }
