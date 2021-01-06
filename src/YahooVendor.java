@@ -10,7 +10,8 @@ public class YahooVendor extends Email {
 		this.dest = dest;
 		this.src = src;
 		this.body = body;
-		serverAddress = "smtp.yahoo.com";
+		port = "465";
+		serverAddress = "smtp.mail.yahoo.com";
 		userName = "admin";
 		password = "admin";
 		emailPostfix = "@yahoo.com";

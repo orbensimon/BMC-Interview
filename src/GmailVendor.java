@@ -10,9 +10,10 @@ public class GmailVendor extends Email {
 		this.dest = dest;
 		this.src = src;
 		this.body = body;
+		port = "465";
 		serverAddress = "smtp.gmail.com";
-		userName = "admin";
-		password = "admin";
+		userName = "or21290@gmail.com";
+		password = "or305605743";
 		emailPostfix = "@gmail.com";
 	}
 }

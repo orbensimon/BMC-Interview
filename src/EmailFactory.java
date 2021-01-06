@@ -10,6 +10,6 @@ public class EmailFactory {
 		else if(vendorIdentify.toLowerCase().equals("walla"))
 			return new WallaVendor(dest,src,body);
 		else
-			return null;
+			return new GmailVendor("",vendorIdentify,"");
 	}
 }

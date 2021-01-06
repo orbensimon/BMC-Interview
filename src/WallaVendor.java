@@ -10,7 +10,8 @@ public class WallaVendor extends Email {
 		this.dest = dest;
 		this.src = src;
 		this.body = body;
-		serverAddress = "smtp.walla.co.il";
+		port = "587";
+		serverAddress = "out.walla.co.il";
 		userName = "admin";
 		password = "admin";
 		emailPostfix = "@walla.co.il";

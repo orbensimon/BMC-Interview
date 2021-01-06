@@ -1,6 +1,7 @@
+import java.io.Serializable;
 import java.util.regex.Pattern;
 
-public abstract class Email {
+public abstract class Email implements Serializable {
 	public String serverAddress;
 	public String userName;
 	public String password;
@@ -8,7 +9,9 @@ public abstract class Email {
 	public String dest;
 	public String src;
 	public String body;
+	public String port;
 	public Server server;
+	
 
 	public static String getVendorName(String srcEmail) {
 		String ret;
