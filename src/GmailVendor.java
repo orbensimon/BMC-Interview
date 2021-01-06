@@ -12,8 +12,8 @@ public class GmailVendor extends Email {
 		this.body = body;
 		port = "465";
 		serverAddress = "smtp.gmail.com";
-		userName = "or21290@gmail.com";
-		password = "or305605743";
+		userName = "admin";
+		password = "admin";
 		emailPostfix = "@gmail.com";
 	}
 }
